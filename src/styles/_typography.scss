@@ -1,0 +1,90 @@
+// ============================================================
+// Livio Typography Scale — ported from gosloto-web stoloteka.less
+// ============================================================
+
+// ── Font size tokens ─────────────────────────────────────────
+
+// Headings
+$font-size-h1:         36px;
+$line-height-h1:       40px;
+$font-size-h1-mobile:  24px;
+$line-height-h1-mobile: 28px;
+
+$font-size-h2:         24px;
+$line-height-h2:       28px;
+$font-size-h2-mobile:  20px;
+$line-height-h2-mobile: 24px;
+
+$font-size-h3:         20px;
+$line-height-h3:       24px;
+$font-size-h3-mobile:  16px;
+$line-height-h3-mobile: 20px;
+
+$font-size-h4:         16px;
+$line-height-h4:       20px;
+$font-size-h4-mobile:  14px;
+$line-height-h4-mobile: 16px;
+
+// Subtitles
+$font-size-subtitle-l:        24px;
+$line-height-subtitle-l:      28px;
+$font-size-subtitle-l-mobile: 20px;
+$line-height-subtitle-l-mobile: 24px;
+
+$font-size-subtitle-m:        16px;
+$line-height-subtitle-m:      20px;
+
+$font-size-subtitle-s:        14px;
+$line-height-subtitle-s:      18px;
+$font-size-subtitle-s-mobile: 12px;
+$line-height-subtitle-s-mobile: 16px;
+
+// Body
+$font-size-l:         18px;
+$line-height-l:       24px;
+$font-size-l-mobile:  16px;
+$line-height-l-mobile: 20px;
+
+$font-size-base:         16px;
+$line-height-base:       20px;
+$font-size-base-mobile:  14px;
+$line-height-base-mobile: 18px;
+
+$font-size-s:         12px;
+$line-height-s:       16px;
+
+// Captions & labels
+$font-size-caption:    12px;
+$line-height-caption:  16px;
+
+$font-size-label-m:    12px;
+$line-height-label-m:  16px;
+
+$font-size-label-s:    10px;
+$line-height-label-s:  14px;
+
+$font-size-tap-bar:    10px;
+$line-height-tap-bar:  12px;
+
+// ── Button sizes ─────────────────────────────────────────────
+
+$btn-large-size:   64px;
+$btn-default-size: 48px;
+$btn-medium-size:  40px;
+$btn-small-size:   36px;
+$btn-base-radius:  12px;
+
+// ── Typography mixins ────────────────────────────────────────
+
+@mixin text-l     { font-size: $font-size-l;    line-height: $line-height-l; }
+@mixin text-base  { font-size: $font-size-base;  line-height: $line-height-base; }
+@mixin text-s     { font-size: $font-size-s;     line-height: $line-height-s; }
+@mixin text-caption { font-size: $font-size-caption; line-height: $line-height-caption; }
+@mixin text-label-m { font-size: $font-size-label-m; line-height: $line-height-label-m; }
+@mixin text-label-s { font-size: $font-size-label-s; line-height: $line-height-label-s; }
+@mixin text-tap-bar { font-size: $font-size-tap-bar; line-height: $line-height-tap-bar; }
+
+@mixin heading-h1 { font-size: $font-size-h1; line-height: $line-height-h1; }
+@mixin heading-h2 { font-size: $font-size-h2; line-height: $line-height-h2; }
+@mixin heading-h3 { font-size: $font-size-h3; line-height: $line-height-h3; }
+@mixin heading-h4 { font-size: $font-size-h4; line-height: $line-height-h4; }

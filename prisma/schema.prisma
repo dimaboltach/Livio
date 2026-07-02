@@ -1,0 +1,113 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  phone     String   @unique
+  photo     String?
+  password  String
+  clinic    String?
+  omsPhoto  String?
+  createdAt DateTime @default(now())
+
+  doctorAppointments DoctorAppointment[]
+  veterinaryRequests VeterinaryRequest[]
+  dishes             Dish[]
+  metrics            Metric[]
+  waterIntake        WaterIntake[]
+  heartExams         HeartExam[]
+  cycleDiary         CycleDiary[]
+}
+
+model DoctorAppointment {
+  id              Int      @id @default(autoincrement())
+  userId          Int
+  patientName     String
+  phone           String
+  appointmentDate String
+  appointmentTime String
+  createdAt       DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VeterinaryRequest {
+  id          Int      @id @default(autoincrement())
+  userId      Int
+  animal      String
+  breed       String?
+  petInfo     String?
+  serviceDate String
+  meetingPlace String
+  wishes      String?
+  photo       String?
+  createdAt   DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Dish {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  name      String
+  photo     String?
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Metric {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  date      String
+  weight    Float?
+  height    Float?
+  waist     Float?
+  chest     Float?
+  hips      Float?
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model WaterIntake {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  date      String
+  goalMl    Int      @default(2000)
+  consumed  Int      @default(0)
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, date])
+}
+
+model HeartExam {
+  id       Int     @id @default(autoincrement())
+  userId   Int
+  examDate String
+  ecg      String?
+  echo     String?
+  mri      String?
+  ctAngio  String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model CycleDiary {
+  id     Int    @id @default(autoincrement())
+  userId Int
+  date   String
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, date])
+}

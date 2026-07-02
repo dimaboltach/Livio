@@ -1,0 +1,92 @@
+@use '../../../styles/variables' as *;
+
+$cycle-color: #E91E63;
+
+.page { background: $bg-white; min-height: 100vh; }
+.content { padding: $spacing-md; }
+
+.calendarHeader {
+  display: flex; align-items: center; justify-content: space-between; margin-bottom: $spacing-md;
+
+  h2 { font-size: $font-size-md; font-weight: 700; color: $text-primary; }
+
+  .navBtn {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: $bg-gray; border: none; cursor: pointer;
+    font-size: 20px;
+    display: flex; align-items: center; justify-content: center;
+    color: $text-primary;
+    transition: background $transition-fast;
+    &:hover { background: darken($bg-gray, 8%); }
+  }
+}
+
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  margin-bottom: $spacing-sm;
+  span { text-align: center; font-size: $font-size-xs; font-weight: 600; color: $text-muted; padding: 4px 0; }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.day {
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: $font-size-sm;
+  color: $text-primary;
+  display: flex; align-items: center; justify-content: center;
+  transition: all $transition-fast;
+
+  &:hover { background: rgba($cycle-color, 0.1); }
+
+  &.marked {
+    background: $cycle-color;
+    color: $text-white;
+    font-weight: 600;
+  }
+
+  &.today:not(.marked) {
+    border: 2px solid $cycle-color;
+    color: $cycle-color;
+    font-weight: 700;
+  }
+
+  &:active { transform: scale(0.88); }
+}
+
+.summary {
+  margin-top: $spacing-md;
+  padding: $spacing-md;
+  background: #FCE4EC;
+  border-radius: $border-radius;
+  display: flex; align-items: center; gap: $spacing-sm;
+
+  span { font-size: 24px; }
+  p { font-size: $font-size-sm; color: darken($cycle-color, 15%); strong { font-weight: 700; } }
+}
+
+.legend {
+  margin-top: $spacing-md;
+  display: flex; gap: $spacing-lg; justify-content: center;
+
+  .legendItem {
+    display: flex; align-items: center; gap: $spacing-xs;
+    font-size: $font-size-xs; color: $text-secondary;
+  }
+
+  .legendDot {
+    width: 12px; height: 12px; border-radius: 50%;
+    &.markedDot { background: $cycle-color; }
+    &.todayDot { border: 2px solid $cycle-color; }
+  }
+}

@@ -1,0 +1,77 @@
+@use '../../styles/variables' as *;
+
+.page { background: $bg-white; min-height: 100vh; }
+.content { padding: $spacing-md; padding-bottom: $spacing-xl; }
+
+.infoCard {
+  background: linear-gradient(135deg, #2d7a3a, #4CAF50);
+  border-radius: $border-radius;
+  padding: $spacing-md;
+  color: $text-white;
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  margin-bottom: $spacing-lg;
+
+  .infoIcon { font-size: 36px; flex-shrink: 0; }
+  h3 { font-size: $font-size-base; font-weight: 700; }
+  p { font-size: $font-size-xs; opacity: 0.85; margin-top: 4px; }
+}
+
+.form { display: flex; flex-direction: column; gap: $spacing-md; }
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+
+  label { font-size: $font-size-sm; font-weight: 600; color: $text-primary; }
+
+  input, textarea {
+    padding: 13px $spacing-md;
+    border: 1.5px solid $border-color;
+    border-radius: $border-radius-sm;
+    font-size: $font-size-base;
+    color: $text-primary;
+    background: $bg-white;
+    transition: border-color $transition-fast;
+    &:focus { border-color: #4CAF50; }
+  }
+
+  textarea { resize: vertical; min-height: 90px; font-family: inherit; }
+}
+
+.submitBtn {
+  padding: 16px;
+  background: #4CAF50;
+  color: $text-white;
+  border-radius: $border-radius-sm;
+  font-size: $font-size-base;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  margin-top: $spacing-sm;
+  transition: background $transition-fast;
+  &:hover { background: #2d7a3a; }
+  &:disabled { opacity: 0.6; cursor: not-allowed; }
+}
+
+.success {
+  text-align: center;
+  padding: $spacing-xl $spacing-md;
+
+  .successIcon { font-size: 64px; margin-bottom: $spacing-md; }
+  h2 { font-size: $font-size-lg; font-weight: 700; color: #22c55e; margin-bottom: $spacing-sm; }
+  p { font-size: $font-size-sm; color: $text-secondary; line-height: 1.5; }
+
+  a {
+    display: block;
+    margin-top: $spacing-lg;
+    padding: 14px;
+    background: $brand-primary;
+    color: $text-white;
+    border-radius: $border-radius-sm;
+    font-weight: 700;
+    text-decoration: none;
+  }
+}

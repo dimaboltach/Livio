@@ -1,0 +1,41 @@
+@use '../../styles/variables' as *;
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-sm $spacing-md;
+  background: $bg-white;
+  border-bottom: 1px solid $border-color;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+
+  .back {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: $brand-primary;
+    flex-shrink: 0;
+
+    &:active {
+      background: rgba($brand-primary, 0.08);
+    }
+
+    svg {
+      width: 20px;
+      height: 20px;
+      stroke-width: 2;
+    }
+  }
+
+  h1 {
+    font-size: $font-size-md;
+    font-weight: 700;
+    color: $text-primary;
+    flex: 1;
+  }
+}

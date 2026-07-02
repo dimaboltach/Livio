@@ -1,0 +1,91 @@
+@use '../../styles/variables' as *;
+
+.page { background: $bg-page; min-height: 100vh; }
+
+.header {
+  background: linear-gradient(160deg, $brand-dark 0%, $brand-primary 100%);
+  color: $text-white;
+  padding: $spacing-lg $spacing-md 48px;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0; right: 0;
+    height: 28px;
+    background: $bg-page;
+    border-radius: 28px 28px 0 0;
+  }
+
+  h1 { font-size: 24px; font-weight: 800; margin-bottom: $spacing-md; }
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: $border-radius-sm;
+  padding: 10px $spacing-md;
+
+  input {
+    flex: 1; background: none; border: none;
+    color: $text-white; font-size: $font-size-sm; outline: none;
+    &::placeholder { color: rgba(255, 255, 255, 0.7); }
+  }
+}
+
+.content {
+  padding: $spacing-md;
+  padding-bottom: calc(#{$bottom-nav-height} + #{$spacing-md});
+}
+
+.sectionTitle {
+  font-size: $font-size-xs; font-weight: 700; color: $text-muted;
+  text-transform: uppercase; letter-spacing: 0.5px;
+  margin-bottom: $spacing-sm; margin-top: $spacing-md;
+}
+
+.serviceList { display: flex; flex-direction: column; gap: $spacing-sm; }
+
+.serviceCard {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  background: $bg-white;
+  border-radius: $border-radius;
+  padding: $spacing-md;
+  box-shadow: $shadow-sm;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  transition: transform $transition-fast;
+  &:active { transform: scale(0.98); }
+
+  .serviceIcon {
+    width: 48px; height: 48px;
+    background: $bg-gray;
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; flex-shrink: 0;
+  }
+
+  .serviceText {
+    flex: 1;
+    h3 { font-size: $font-size-base; font-weight: 600; color: $text-primary; }
+    p { font-size: $font-size-xs; color: $text-muted; margin-top: 2px; }
+  }
+
+  .arrow { color: $text-muted; }
+
+  .soon {
+    font-size: $font-size-xs;
+    background: $bg-gray;
+    color: $text-muted;
+    padding: 3px 8px;
+    border-radius: 20px;
+    font-weight: 500;
+  }
+}

@@ -1,0 +1,181 @@
+// ── Layout ───────────────────────────────────────────────────
+
+@mixin f-center($display: flex) {
+  display: $display;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin f-between($align-items: center) {
+  display: flex;
+  align-items: $align-items;
+  justify-content: space-between;
+}
+
+@mixin f-align-center {
+  display: flex;
+  align-items: center;
+}
+
+@mixin f-start($align-items: center) {
+  display: flex;
+  align-items: $align-items;
+  justify-content: flex-start;
+}
+
+@mixin f-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin f-column-center {
+  @include f-center;
+  flex-direction: column;
+}
+
+@mixin f-column-between($align-items: center) {
+  @include f-between($align-items);
+  flex-direction: column;
+}
+
+// ── Sizing ───────────────────────────────────────────────────
+
+@mixin square($size) {
+  width: $size;
+  height: $size;
+}
+
+@mixin circle($size) {
+  @include square($size);
+  border-radius: 50%;
+}
+
+// ── Positioning ──────────────────────────────────────────────
+
+@mixin abs-overlay($position: absolute, $inset: 0) {
+  position: $position;
+  inset: $inset;
+}
+
+@mixin abs-center($position: absolute) {
+  position: $position;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// ── Typography ───────────────────────────────────────────────
+
+@mixin ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin ellipsis-multiline($lines) {
+  white-space: pre-wrap;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+}
+
+@mixin gradient-text($bg) {
+  background: $bg;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+// ── Transitions & Animations ─────────────────────────────────
+
+@mixin transition($props...) {
+  $result: ();
+  @each $prop in $props {
+    $result: append($result, $prop 0.2s linear, comma);
+  }
+  transition: $result;
+}
+
+@mixin smooth-show($duration: 0.2s, $delay: 0s) {
+  animation: smooth-show $duration $delay linear forwards;
+}
+
+@keyframes smooth-show {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes smooth-hide {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+// ── UI helpers ───────────────────────────────────────────────
+
+@mixin button-reset {
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: normal;
+  text-align: center;
+  white-space: nowrap;
+  appearance: none;
+  cursor: pointer;
+  user-select: none;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@mixin disabled {
+  opacity: 0.48;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+@mixin hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+}
+
+@mixin styled-scrollbar($width: 4px, $thumb: rgba(0, 0, 0, 0.2), $track: transparent) {
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: $thumb $track;
+  &::-webkit-scrollbar { width: $width; }
+  &::-webkit-scrollbar-track { background: $track; }
+  &::-webkit-scrollbar-thumb { background: $thumb; border-radius: 99px; }
+}
+
+@mixin object-fit($width: 100%, $height: 100%, $fit: cover) {
+  object-fit: $fit;
+  width: $width;
+  height: $height;
+}
+
+// ── Media query helpers ──────────────────────────────────────
+
+$bp-mobile: 480px;
+$bp-tablet: 768px;
+$bp-laptop: 1024px;
+$bp-desktop: 1280px;
+
+@mixin mobile { @media (max-width: #{$bp-mobile}) { @content; } }
+@mixin tablet { @media (max-width: #{$bp-tablet}) { @content; } }
+@mixin laptop { @media (max-width: #{$bp-laptop}) { @content; } }
+@mixin desktop { @media (min-width: #{$bp-desktop}) { @content; } }
+
+// Hover only on devices that support it (not mobile touch)
+@mixin hover-support { @media (hover: hover) and (pointer: fine) { @content; } }
+
+// ── Z-index scale ────────────────────────────────────────────
+
+$z-dropdown:  1000;
+$z-sticky:    1020;
+$z-fixed:     1030;
+$z-backdrop:  1040;
+$z-modal:     1050;
+$z-popover:   1060;
+$z-tooltip:   1070;

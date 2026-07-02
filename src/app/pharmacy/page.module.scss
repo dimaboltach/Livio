@@ -1,0 +1,138 @@
+@use '../../styles/variables' as *;
+
+.page { background: $bg-page; min-height: 100vh; }
+
+.header {
+  background: linear-gradient(160deg, $brand-dark 0%, $brand-primary 100%);
+  color: $text-white;
+  padding: $spacing-lg $spacing-md 48px;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0; right: 0;
+    height: 28px;
+    background: $bg-page;
+    border-radius: 28px 28px 0 0;
+  }
+
+  h1 { font-size: 24px; font-weight: 800; margin-bottom: $spacing-sm; }
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: $border-radius-sm;
+  padding: 10px $spacing-md;
+
+  input {
+    flex: 1; background: none; border: none;
+    color: $text-white; font-size: $font-size-sm; outline: none;
+    &::placeholder { color: rgba(255, 255, 255, 0.7); }
+  }
+}
+
+.categories {
+  display: flex;
+  gap: $spacing-sm;
+  padding: $spacing-md $spacing-md $spacing-sm;
+  overflow-x: auto;
+  &::-webkit-scrollbar { display: none; }
+}
+
+.catBtn {
+  flex-shrink: 0;
+  padding: 8px $spacing-md;
+  border-radius: 20px;
+  font-size: $font-size-sm;
+  font-weight: 500;
+  background: $bg-white;
+  color: $text-secondary;
+  border: 1.5px solid $border-color;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &.active {
+    background: $brand-primary;
+    color: $text-white;
+    border-color: $brand-primary;
+  }
+}
+
+.content {
+  padding: 0 $spacing-md $spacing-md;
+  padding-bottom: calc(#{$bottom-nav-height} + #{$spacing-md});
+}
+
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-sm;
+}
+
+.productCard {
+  background: $bg-white;
+  border-radius: $border-radius;
+  padding: $spacing-md;
+  box-shadow: $shadow-sm;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  .discountBadge {
+    position: absolute;
+    top: 8px; right: 8px;
+    background: #ff4444;
+    color: $text-white;
+    font-size: $font-size-xs;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 10px;
+  }
+
+  .productIcon { font-size: 32px; margin-bottom: $spacing-sm; }
+
+  h3 {
+    font-size: $font-size-sm; font-weight: 600; color: $text-primary;
+    margin-bottom: 4px; line-height: 1.3;
+  }
+
+  p {
+    font-size: $font-size-xs; color: $text-muted; flex: 1;
+    margin-bottom: $spacing-sm; line-height: 1.4;
+  }
+
+  .priceRow {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    margin-bottom: $spacing-sm;
+
+    .price { font-size: $font-size-md; font-weight: 700; color: $brand-primary; }
+    .oldPrice { font-size: $font-size-xs; color: $text-muted; text-decoration: line-through; }
+  }
+
+  .addBtn {
+    background: $brand-primary;
+    color: $text-white;
+    border: none;
+    border-radius: $border-radius-sm;
+    padding: 8px;
+    font-size: $font-size-xs;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background $transition-fast;
+    &:hover { background: $brand-dark; }
+  }
+}
+
+.empty {
+  text-align: center;
+  padding: 48px $spacing-md;
+  color: $text-muted;
+  p { font-size: 48px; margin-bottom: $spacing-sm; }
+  span { font-size: $font-size-sm; }
+}

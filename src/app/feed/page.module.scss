@@ -1,0 +1,101 @@
+@use '../../styles/variables' as *;
+
+.page { background: $bg-white; min-height: 100vh; }
+.content { padding: $spacing-md; padding-bottom: $spacing-xl; }
+
+.sectionTitle {
+  font-size: $font-size-xs; font-weight: 700; color: $text-muted;
+  text-transform: uppercase; letter-spacing: 0.5px;
+  margin-bottom: $spacing-sm; margin-top: $spacing-md;
+  &:first-child { margin-top: 0; }
+}
+
+.dayTabs {
+  display: flex; gap: $spacing-xs; overflow-x: auto;
+  padding-bottom: 4px; margin-bottom: $spacing-sm;
+  &::-webkit-scrollbar { display: none; }
+}
+
+.dayTab {
+  flex-shrink: 0;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: $font-size-sm; font-weight: 500;
+  background: $bg-gray; color: $text-secondary; border: none; cursor: pointer;
+  transition: all $transition-fast;
+  &.active { background: $brand-primary; color: $text-white; font-weight: 700; }
+}
+
+.menuCard {
+  background: $bg-gray;
+  border-radius: $border-radius;
+  padding: $spacing-md;
+  margin-bottom: $spacing-md;
+  display: flex; flex-direction: column; gap: $spacing-sm;
+
+  .mealItem {
+    display: flex; align-items: center; gap: $spacing-sm;
+    font-size: $font-size-sm; color: $text-primary;
+    .mealIcon { font-size: 20px; }
+  }
+}
+
+.aiSection { margin-bottom: $spacing-md; }
+
+.aiBtn {
+  width: 100%;
+  padding: 13px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: $text-white;
+  border-radius: $border-radius;
+  font-size: $font-size-sm; font-weight: 600; border: none; cursor: pointer;
+  transition: opacity $transition-fast;
+  &:hover { opacity: 0.9; }
+}
+
+.addForm {
+  display: flex; gap: $spacing-sm; margin-bottom: $spacing-md;
+
+  input {
+    flex: 1;
+    padding: 12px $spacing-md;
+    border: 1.5px solid $border-color;
+    border-radius: $border-radius-sm;
+    font-size: $font-size-base;
+    transition: border-color $transition-fast;
+    &:focus { border-color: $brand-primary; }
+  }
+
+  button {
+    width: 44px; height: 44px;
+    background: $brand-primary; color: $text-white;
+    border-radius: $border-radius-sm; border: none;
+    font-size: 22px; cursor: pointer; flex-shrink: 0;
+    transition: background $transition-fast;
+    &:hover { background: $brand-dark; }
+    &:disabled { opacity: 0.6; }
+  }
+}
+
+.dishesList { display: flex; flex-direction: column; gap: $spacing-sm; }
+
+.dishCard {
+  display: flex; align-items: center; gap: $spacing-sm;
+  padding: $spacing-sm $spacing-md;
+  background: $bg-gray;
+  border-radius: $border-radius-sm;
+
+  .dishIcon { font-size: 20px; }
+  .dishName { flex: 1; font-size: $font-size-sm; color: $text-primary; }
+  .deleteBtn {
+    background: none; border: none; color: $text-muted; cursor: pointer;
+    font-size: 14px; padding: 2px 6px;
+    &:hover { color: $brand-primary; }
+  }
+}
+
+.empty {
+  text-align: center; padding: 32px $spacing-md; color: $text-muted;
+  p { font-size: 40px; margin-bottom: $spacing-sm; }
+  span { font-size: $font-size-sm; }
+}

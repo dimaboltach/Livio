@@ -1,0 +1,53 @@
+// Brand colors
+$brand-primary: #BD363A;
+$brand-dark: #C63024;
+$brand-light: #e85a5e;
+
+// Text
+$text-primary: #1a1a1a;
+$text-secondary: #666666;
+$text-muted: #999999;
+$text-white: #ffffff;
+
+// Background
+$bg-page: #f5f5f5;
+$bg-white: #ffffff;
+$bg-card: #ffffff;
+$bg-gray: #f8f8f8;
+
+// Border
+$border-color: #e5e5e5;
+$border-radius: 12px;
+$border-radius-sm: 8px;
+$border-radius-lg: 20px;
+
+// Spacing
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+
+// Typography
+$font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+$font-size-xs: 11px;
+$font-size-sm: 13px;
+$font-size-base: 15px;
+$font-size-md: 17px;
+$font-size-lg: 20px;
+$font-size-xl: 24px;
+
+// Shadows
+$shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.08);
+$shadow-md: 0 2px 12px rgba(0, 0, 0, 0.10);
+$shadow-lg: 0 4px 24px rgba(0, 0, 0, 0.14);
+
+// Bottom nav height
+$bottom-nav-height: 64px;
+
+// Transitions
+$transition-fast: 0.15s ease;
+$transition-base: 0.25s ease;
+
+// Max-width for mobile-first
+$max-width: 480px;

@@ -1,0 +1,158 @@
+@use '@/styles/mixins' as mix;
+@use '@/styles/typography' as typo;
+@use '@/styles/variables' as vars;
+
+.button {
+  @include mix.f-center(inline-flex);
+  @include mix.transition(background-color, border-color, box-shadow, opacity, color);
+  border-radius: 12px;
+  font-size: typo.$font-size-base;
+  font-weight: 700;
+  white-space: nowrap;
+  position: relative;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+
+  &.disabled,
+  &:disabled {
+    opacity: 0.48;
+    cursor: not-allowed;
+    pointer-events: none;
+
+    &.loading {
+      opacity: 1;
+    }
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+// ── Themes ───────────────────────────────────────────────────
+
+.primary {
+  background-color: vars.$brand-primary;
+  color: #fff;
+
+  @include mix.hover-support {
+    &:not(.disabled):not(:disabled):hover {
+      background-color: vars.$brand-dark;
+    }
+    &:not(.disabled):not(:disabled):active {
+      background-color: vars.$brand-dark;
+      filter: brightness(0.9);
+    }
+  }
+}
+
+.secondary {
+  background-color: rgba(0, 0, 0, 0.06);
+  color: rgba(0, 0, 0, 0.9);
+
+  @include mix.hover-support {
+    &:not(.disabled):not(:disabled):hover {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+    &:not(.disabled):not(:disabled):active {
+      background-color: rgba(0, 0, 0, 0.14);
+    }
+  }
+}
+
+.tertiary {
+  background-color: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  color: rgba(0, 0, 0, 0.9);
+
+  @include mix.hover-support {
+    &:not(.disabled):not(:disabled):hover {
+      background-color: rgba(0, 0, 0, 0.04);
+    }
+    &:not(.disabled):not(:disabled):active {
+      background-color: rgba(0, 0, 0, 0.08);
+    }
+  }
+}
+
+.ghost {
+  background-color: transparent;
+  color: vars.$brand-primary;
+
+  @include mix.hover-support {
+    &:not(.disabled):not(:disabled):hover {
+      background-color: rgba(189, 54, 58, 0.06);
+    }
+  }
+}
+
+.danger {
+  background-color: #ff4c58;
+  color: #fff;
+
+  @include mix.hover-support {
+    &:not(.disabled):not(:disabled):hover {
+      background-color: #e5323d;
+    }
+  }
+}
+
+// ── Sizes ─────────────────────────────────────────────────────
+
+.largeSize {
+  height: typo.$btn-large-size;
+  padding-inline: 32px;
+  font-size: typo.$font-size-l;
+}
+
+.defaultSize {
+  height: typo.$btn-default-size;
+  padding-inline: 24px;
+
+  @include mix.tablet {
+    height: typo.$btn-medium-size;
+    padding-inline: 20px;
+  }
+}
+
+.mediumSize {
+  height: typo.$btn-medium-size;
+  padding-inline: 20px;
+  border-radius: 10px;
+  font-size: typo.$font-size-base;
+}
+
+.smallSize {
+  height: typo.$btn-small-size;
+  padding-inline: 16px;
+  border-radius: 10px;
+  font-size: typo.$font-size-s;
+}
+
+// ── Modifiers ────────────────────────────────────────────────
+
+.fluid {
+  width: 100%;
+}
+
+.square,
+.circle {
+  flex: none;
+  padding: 0;
+}
+
+.circle {
+  border-radius: 50%;
+}
+
+.squareLargeSize   { @include mix.square(typo.$btn-large-size); }
+.squareDefaultSize { @include mix.square(typo.$btn-default-size); }
+.squareMediumSize  { @include mix.square(typo.$btn-medium-size); }
+.squareSmallSize   { @include mix.square(typo.$btn-small-size); }
+
+.uppercase { text-transform: uppercase; }
+.loading   { pointer-events: none; }

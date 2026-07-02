@@ -1,0 +1,45 @@
+@use '@/styles/typography' as typo;
+@use '@/styles/variables' as vars;
+
+// ── Sizes ─────────────────────────────────────────────────────
+
+.l       { font-size: typo.$font-size-l;       line-height: typo.$line-height-l; }
+.m,
+.base    { font-size: typo.$font-size-base;     line-height: typo.$line-height-base; }
+.s       { font-size: typo.$font-size-s;        line-height: typo.$line-height-s; }
+.caption { font-size: typo.$font-size-caption;  line-height: typo.$line-height-caption; }
+.labelM  { font-size: typo.$font-size-label-m;  line-height: typo.$line-height-label-m; }
+.labelS  { font-size: typo.$font-size-label-s;  line-height: typo.$line-height-label-s; }
+.tapBar  { font-size: typo.$font-size-tap-bar;  line-height: typo.$line-height-tap-bar; }
+
+// Responsive sizes
+@media (max-width: 768px) {
+  .l    { font-size: typo.$font-size-l-mobile;    line-height: typo.$line-height-l-mobile; }
+  .m,
+  .base { font-size: typo.$font-size-base-mobile; line-height: typo.$line-height-base-mobile; }
+}
+
+// ── Weights ───────────────────────────────────────────────────
+
+.light,   .w300 { font-weight: 300; }
+.normal,  .w400 { font-weight: 400; }
+.medium,  .w500 { font-weight: 500; }
+.semiBold,.w600 { font-weight: 600; }
+.bold,    .w700 { font-weight: 700; }
+.extraBold,.w800 { font-weight: 800; }
+.black,   .w900 { font-weight: 900; }
+
+// ── Colors ────────────────────────────────────────────────────
+
+.primary   { color: vars.$text-primary; }
+.secondary { color: vars.$text-secondary; }
+.tertiary  { color: vars.$text-muted; }
+.brand     { color: vars.$brand-primary; }
+.error     { color: #ff4c58; }
+.success   { color: #3fcc29; }
+.white     { color: #fff; }
+
+// ── Modifiers ────────────────────────────────────────────────
+
+.uppercase { text-transform: uppercase; }
+.ellipsis  { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }

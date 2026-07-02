@@ -1,0 +1,28 @@
+@use '@/styles/typography' as typo;
+@use '@/styles/variables' as vars;
+
+// ── Sizes ─────────────────────────────────────────────────────
+
+.h1 { font-size: typo.$font-size-h1; line-height: typo.$line-height-h1; font-weight: 700; }
+.h2 { font-size: typo.$font-size-h2; line-height: typo.$line-height-h2; font-weight: 700; }
+.h3 { font-size: typo.$font-size-h3; line-height: typo.$line-height-h3; font-weight: 700; }
+.h4 { font-size: typo.$font-size-h4; line-height: typo.$line-height-h4; font-weight: 700; }
+
+// Mobile responsive
+@media (max-width: 768px) {
+  .h1 { font-size: typo.$font-size-h1-mobile; line-height: typo.$line-height-h1-mobile; }
+  .h2 { font-size: typo.$font-size-h2-mobile; line-height: typo.$line-height-h2-mobile; }
+  .h3 { font-size: typo.$font-size-h3-mobile; line-height: typo.$line-height-h3-mobile; }
+  .h4 { font-size: typo.$font-size-h4-mobile; line-height: typo.$line-height-h4-mobile; }
+}
+
+// ── Colors ────────────────────────────────────────────────────
+
+.primary   { color: vars.$text-primary; }
+.secondary { color: vars.$text-secondary; }
+.brand     { color: vars.$brand-primary; }
+.white     { color: #fff; }
+
+// ── Modifiers ────────────────────────────────────────────────
+
+.uppercase { text-transform: uppercase; }
