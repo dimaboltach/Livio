@@ -8,9 +8,9 @@
 }
 
 .hero {
-  background: linear-gradient(160deg, $brand-dark 0%, $brand-primary 55%, $brand-light 100%);
+  background: $brand-primary;
   color: $text-white;
-  padding: 60px $spacing-md 80px;
+  padding: 40px $spacing-md 60px;
   text-align: center;
   position: relative;
 
@@ -45,7 +45,7 @@
   }
 
   .logoText {
-    font-size: 32px;
+    font-size: 64px;
     font-weight: 800;
     letter-spacing: -1px;
   }
@@ -65,7 +65,7 @@
 }
 
 .features {
-  padding: $spacing-xl $spacing-md;
+  padding: 0 $spacing-md $spacing-xl;
   display: flex;
   flex-direction: column;
   gap: $spacing-md;

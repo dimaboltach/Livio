@@ -90,12 +90,6 @@ export default function FeedPage() {
           ))}
         </div>
 
-        <div className={styles.aiSection}>
-          <button className={styles.aiBtn} onClick={() => setDevModal(true)}>
-            🤖 AI-рекомендации по питанию
-          </button>
-        </div>
-
         <p className={styles.sectionTitle}>Мои блюда</p>
 
         <form className={styles.addForm} onSubmit={addDish}>

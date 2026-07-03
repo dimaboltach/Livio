@@ -18,7 +18,7 @@ $cycle-color: #E91E63;
     display: flex; align-items: center; justify-content: center;
     color: $text-primary;
     transition: background $transition-fast;
-    &:hover { background: darken($bg-gray, 8%); }
+    &:hover { background: #ebebeb; }
   }
 }
 
@@ -72,7 +72,7 @@ $cycle-color: #E91E63;
   display: flex; align-items: center; gap: $spacing-sm;
 
   span { font-size: 24px; }
-  p { font-size: $font-size-sm; color: darken($cycle-color, 15%); strong { font-weight: 700; } }
+  p { font-size: $font-size-sm; color: #b0003a; strong { font-weight: 700; } }
 }
 
 .legend {

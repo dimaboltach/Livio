@@ -24,23 +24,23 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       async authorize(credentials) {
         if (!credentials?.phone || !credentials?.password) return null;
 
+        // TEMP: test user while DB is not ready
+        const TEST_PHONE = "79086118372";
+        const TEST_PASSWORD = "123456";
         const phone = String(credentials.phone).replace(/\D/g, "");
-        const user = await prisma.user.findUnique({ where: { phone } });
+        if (phone === TEST_PHONE && String(credentials.password) === TEST_PASSWORD) {
+          return { id: "1", name: "Тест Пользователь", phone, image: null };
+        }
 
-        if (!user) return null;
-
-        const isValid = await bcrypt.compare(
-          String(credentials.password),
-          user.password
-        );
-        if (!isValid) return null;
-
-        return {
-          id: String(user.id),
-          name: user.name,
-          phone: user.phone,
-          image: user.photo || null,
-        };
+        try {
+          const user = await prisma.user.findUnique({ where: { phone } });
+          if (!user) return null;
+          const isValid = await bcrypt.compare(String(credentials.password), user.password);
+          if (!isValid) return null;
+          return { id: String(user.id), name: user.name, phone: user.phone, image: user.photo || null };
+        } catch {
+          return null;
+        }
       },
     }),
   ],

@@ -11,14 +11,13 @@ const protectedRoutes = [
 ];
 
 export default auth((req) => {
-  const isProtected = protectedRoutes.some((route) =>
-    req.nextUrl.pathname.startsWith(route)
-  );
-
-  if (isProtected && !req.auth) {
-    return NextResponse.redirect(new URL("/login", req.url));
-  }
-
+  // AUTH DISABLED TEMPORARILY — uncomment when DB is ready
+  // const isProtected = protectedRoutes.some((route) =>
+  //   req.nextUrl.pathname.startsWith(route)
+  // );
+  // if (isProtected && !req.auth) {
+  //   return NextResponse.redirect(new URL("/login", req.url));
+  // }
   return NextResponse.next();
 });
 

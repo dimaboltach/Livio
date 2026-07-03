@@ -1,6 +1,15 @@
 @use './variables' as *;
+@use './theme' as theme;
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+:root {
+  @include theme.theme-light();
+}
+
+[data-theme="dark"] {
+  @include theme.theme-dark();
+}
 
 *,
 *::before,

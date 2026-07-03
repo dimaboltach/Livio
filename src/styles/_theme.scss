@@ -1,0 +1,98 @@
+// ============================================================
+// Livio Theme — CSS custom properties
+// Аналог themes.less из gosloto-web.
+//
+// Использование:
+//   В SCSS-компонентах: color: var(--color-brand);
+//   Тёмная тема в будущем: [data-theme="dark"] { @include theme-dark(); }
+// ============================================================
+
+// ── Сырые значения (для color-math в SCSS) ───────────────────
+
+$_brand-primary:   #BD363A;
+$_brand-dark:      #C63024;
+$_brand-light:     #e85a5e;
+
+$_text-primary:    #1a1a1a;
+$_text-secondary:  #666666;
+$_text-muted:      #999999;
+
+$_bg-page:         #f5f5f5;
+$_bg-white:        #ffffff;
+$_bg-card:         #ffffff;
+$_bg-gray:         #f8f8f8;
+
+$_border:          #e5e5e5;
+$_shadow-color:    rgba(0, 0, 0, 0.1);
+
+$_error:           #ff4c58;
+$_success:         #3fcc29;
+$_link:            #3a9aff;
+
+// ── Светлая тема ─────────────────────────────────────────────
+
+@mixin theme-light {
+  // Бренд
+  --color-brand:          #{$_brand-primary};
+  --color-brand-dark:     #{$_brand-dark};
+  --color-brand-light:    #{$_brand-light};
+
+  // Текст
+  --color-text-primary:   #{$_text-primary};
+  --color-text-secondary: #{$_text-secondary};
+  --color-text-muted:     #{$_text-muted};
+  --color-text-white:     #fff;
+  --color-text-brand:     #{$_brand-primary};
+  --color-text-error:     #{$_error};
+  --color-text-success:   #{$_success};
+
+  // Фоны
+  --color-bg-page:        #{$_bg-page};
+  --color-bg-white:       #{$_bg-white};
+  --color-bg-card:        #{$_bg-card};
+  --color-bg-gray:        #{$_bg-gray};
+
+  // Границы
+  --color-border:         #{$_border};
+
+  // Тени
+  --shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 2px 12px rgba(0, 0, 0, 0.10);
+  --shadow-lg: 0 4px 24px rgba(0, 0, 0, 0.14);
+
+  // Статусы
+  --color-error:          #{$_error};
+  --color-success:        #{$_success};
+  --color-link:           #{$_link};
+}
+
+// ── Тёмная тема (задел на будущее) ───────────────────────────
+
+@mixin theme-dark {
+  --color-brand:          #{$_brand-light};
+  --color-brand-dark:     #{$_brand-primary};
+  --color-brand-light:    #{$_brand-light};
+
+  --color-text-primary:   rgba(255, 255, 255, 0.92);
+  --color-text-secondary: rgba(255, 255, 255, 0.60);
+  --color-text-muted:     rgba(255, 255, 255, 0.38);
+  --color-text-white:     #fff;
+  --color-text-brand:     #{$_brand-light};
+  --color-text-error:     #{$_error};
+  --color-text-success:   #{$_success};
+
+  --color-bg-page:        #121212;
+  --color-bg-white:       #1e1e1e;
+  --color-bg-card:        #252525;
+  --color-bg-gray:        #2a2a2a;
+
+  --color-border:         rgba(255, 255, 255, 0.12);
+
+  --shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 2px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 4px 24px rgba(0, 0, 0, 0.5);
+
+  --color-error:          #{$_error};
+  --color-success:        #{$_success};
+  --color-link:           #{$_link};
+}

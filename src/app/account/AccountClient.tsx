@@ -29,64 +29,73 @@ const healthCards = [
 export default function AccountClient({ user, notifications }: Props) {
   const [showDevModal, setShowDevModal] = useState(false);
   const [showNotifs, setShowNotifs] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
   const router = useRouter();
+
+  const allServices = [
+    { label: "Врач на дом", keywords: ["врач", "доктор", "doctor"], href: "/doctor" },
+    { label: "Аптека", keywords: ["аптек", "pharmacy", "лекарств", "таблетк"], href: "/pharmacy" },
+    { label: "Ветеринар", keywords: ["вет", "питомец", "животн", "кош", "собак"], href: "/veterinary" },
+    { label: "Вода", keywords: ["вода", "water", "питьё"], href: "/health/water" },
+    { label: "Здоровье сердца", keywords: ["серд", "heart", "экг", "мрт"], href: "/health/heart" },
+    { label: "Цикл", keywords: ["цикл", "cycle"], href: "/health/cycle" },
+    { label: "Метрики тела", keywords: ["метр", "вес", "рост", "талия"], href: "/health/metrics" },
+    { label: "Питание", keywords: ["питан", "еда", "блюд", "food", "feed"], href: "/feed" },
+    { label: "Услуги", keywords: ["услуг", "сервис"], href: "/services" },
+    { label: "Помощь", keywords: ["помощ", "help", "вопрос"], href: "/help" },
+  ];
+
+  const filteredServices = searchQuery.trim()
+    ? allServices.filter(({ keywords }) =>
+        keywords.some((k) => k.includes(searchQuery.toLowerCase()) || searchQuery.toLowerCase().includes(k))
+      )
+    : allServices;
+
+  const handleSearch = (href: string) => {
+    router.push(href);
+    setShowSearch(false);
+    setSearchQuery("");
+  };
 
   const firstLetter = user.name.charAt(0).toUpperCase();
 
   return (
     <div className={styles.page}>
       <div className={styles.header}>
+        {/* Верхняя строка: логотип + иконки */}
         <div className={styles.headerTop}>
-          <Link href="/profile" className={styles.userInfo}>
-            <div className={styles.avatar}>
-              {user.photo ? (
-                <img src={user.photo} alt={user.name} />
-              ) : (
-                firstLetter
+          <span className={styles.logo}>livio</span>
+          <div className={styles.headerActions}>
+            <button className={styles.iconBtn} onClick={() => setShowNotifs(!showNotifs)}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                <path d="M13.73 21a2 2 0 01-3.46 0" />
+              </svg>
+              {notifications.length > 0 && (
+                <span className={styles.notifBadge}>{notifications.length}</span>
               )}
-            </div>
-            <div className={styles.greeting}>
-              <TextLivio size="s" color="secondary">Добро пожаловать!</TextLivio>
-              <TitleLivio size="h3" as="h2">{user.name}</TitleLivio>
-            </div>
-          </Link>
+            </button>
+            <button className={styles.iconBtn} onClick={() => setShowSearch(true)}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="11" cy="11" r="8" />
+                <path d="m21 21-4.35-4.35" />
+              </svg>
+            </button>
+          </div>
+        </div>
 
-          <button
-            className={styles.bellBtn}
-            onClick={() => setShowNotifs(!showNotifs)}
-          >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" />
-              <path d="M13.73 21a2 2 0 01-3.46 0" />
-            </svg>
-            {notifications.length > 0 && (
-              <span className={styles.notifBadge}>{notifications.length}</span>
+        {/* Нижняя строка: аватар + имя */}
+        <Link href="/profile" className={styles.userInfo}>
+          <div className={styles.avatar}>
+            {user.photo ? (
+              <img src={user.photo} alt={user.name} />
+            ) : (
+              firstLetter
             )}
-          </button>
-        </div>
-
-        <div className={styles.searchBar}>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <circle cx="11" cy="11" r="8" />
-            <path d="m21 21-4.35-4.35" />
-          </svg>
-          <input
-            placeholder="Поиск по сервисам..."
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                const val = (e.target as HTMLInputElement).value.toLowerCase();
-                if (val.includes("врач") || val.includes("doctor")) router.push("/doctor");
-                else if (val.includes("аптек") || val.includes("pharmacy")) router.push("/pharmacy");
-                else if (val.includes("вет")) router.push("/veterinary");
-                else if (val.includes("вода") || val.includes("water")) router.push("/health/water");
-                else if (val.includes("серд") || val.includes("heart")) router.push("/health/heart");
-                else if (val.includes("цикл")) router.push("/health/cycle");
-                else if (val.includes("метр")) router.push("/health/metrics");
-                else if (val.includes("питан") || val.includes("блюд")) router.push("/feed");
-              }
-            }}
-          />
-        </div>
+          </div>
+          <TitleLivio size="h3" as="h2" color="white">{user.name}</TitleLivio>
+        </Link>
       </div>
 
       <div className={styles.content}>
@@ -147,6 +156,51 @@ export default function AccountClient({ user, notifications }: Props) {
       </div>
 
       {showDevModal && <DevModal onClose={() => setShowDevModal(false)} />}
+
+      {showSearch && (
+        <div className={styles.searchOverlay} onClick={() => setShowSearch(false)}>
+          <div className={styles.searchModal} onClick={(e) => e.stopPropagation()}>
+            <div className={styles.searchHeader}>
+              <TextLivio size="base" weight="semiBold">Поиск по сервисам</TextLivio>
+              <button className={styles.searchClose} onClick={() => setShowSearch(false)}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" width="20" height="20">
+                  <path d="M18 6L6 18M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            <div className={styles.searchInputWrap}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="18" height="18">
+                <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
+              </svg>
+              <input
+                autoFocus
+                className={styles.searchInput}
+                placeholder="Врач, аптека, вода..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              {searchQuery && (
+                <button className={styles.searchClear} onClick={() => setSearchQuery("")}>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" width="14" height="14">
+                    <path d="M18 6L6 18M6 6l12 12" />
+                  </svg>
+                </button>
+              )}
+            </div>
+            <div className={styles.searchResults}>
+              {filteredServices.length === 0 ? (
+                <TextLivio size="s" color="tertiary" className={styles.searchEmpty}>Ничего не найдено</TextLivio>
+              ) : (
+                filteredServices.map((s) => (
+                  <button key={s.href} className={styles.searchResultItem} onClick={() => handleSearch(s.href)}>
+                    {s.label}
+                  </button>
+                ))
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

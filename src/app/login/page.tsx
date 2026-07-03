@@ -52,8 +52,8 @@ export default function LoginPage() {
   return (
     <div className={styles.page}>
       <div className={styles.header}>
-        <TitleLivio size="h2">Добро пожаловать!</TitleLivio>
-        <TextLivio size="base" color="secondary">Войдите, чтобы продолжить</TextLivio>
+        <TitleLivio size="h2" color="white">Добро пожаловать!</TitleLivio>
+        <TextLivio size="base" color="white">Войдите, чтобы продолжить</TextLivio>
       </div>
 
       <form className={styles.form} onSubmit={handleSubmit}>

@@ -16,15 +16,8 @@ export default function LandingPage() {
     <div className={styles.landing}>
       <div className={styles.hero}>
         <div className={styles.logo}>
-          <div className={styles.logoIcon}>❤️</div>
-          <span className={styles.logoText}>livio</span>
+          <TitleLivio size="h1" className={styles.logoText}>livio</TitleLivio>
         </div>
-        <TitleLivio size="h1" className={styles.heroTitle}>
-          Ваше здоровье —<br />наша забота
-        </TitleLivio>
-        <TextLivio size="l" color="secondary" className={styles.heroSubtitle}>
-          Управляйте здоровьем, записывайтесь к врачам<br />и следите за самочувствием
-        </TextLivio>
       </div>
 
       <div className={styles.features}>

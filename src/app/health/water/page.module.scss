@@ -71,7 +71,7 @@ $water-color: #2196F3;
   background: $water-color; color: $text-white;
   border-radius: $border-radius-sm; font-size: $font-size-base; font-weight: 700; border: none; cursor: pointer;
   transition: background $transition-fast;
-  &:hover { background: darken($water-color, 10%); }
+  &:hover { background: #1976d2; }
   &:disabled { opacity: 0.5; cursor: not-allowed; }
 }
 

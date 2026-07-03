@@ -31,14 +31,13 @@
   }
 
   p {
-    font-size: $font-size-sm;
-    opacity: 0.85;
+    font-size: 16px;
   }
 }
 
 .form {
   flex: 1;
-  padding: $spacing-xl $spacing-md $spacing-md;
+  padding: $spacing-md $spacing-md $spacing-md;
   display: flex;
   flex-direction: column;
   gap: $spacing-md;

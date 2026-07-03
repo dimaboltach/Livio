@@ -58,8 +58,8 @@ export default function RegisterPage() {
   return (
     <div className={styles.page}>
       <div className={styles.header}>
-        <TitleLivio size="h2">Создать аккаунт</TitleLivio>
-        <TextLivio size="base" color="secondary">Заполните данные для регистрации</TextLivio>
+        <TitleLivio size="h2" color="white">Создать аккаунт</TitleLivio>
+        <TextLivio size="base" color="white">Заполните данные для регистрации</TextLivio>
       </div>
 
       <form className={styles.form} onSubmit={handleSubmit}>
